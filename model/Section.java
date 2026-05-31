@@ -24,13 +24,6 @@ public class Section implements Displayable {
         return sectionName;
     }
 
-    // Low risk — section names can be renamed by admin
-    public void setSectionName(String sectionName) {
-        if (sectionName != null && !sectionName.isEmpty()) {
-            this.sectionName = sectionName;
-        }
-    }
-
     public Major getMajor() {
         return major;
     }
@@ -39,19 +32,26 @@ public class Section implements Displayable {
         return sectionTime;
     }
 
-    // Medium risk — schedules can change (e.g. morning to afternoon)
-    public void setSectionTime(SectionTime sectionTime) {
-        if (sectionTime != null) {
-            this.sectionTime = sectionTime;
-        }
-    }
-
     @Override
     public void displayInfo() {
         System.out.println("Section ID: " + sectionId);
         System.out.println("Section Name: " + sectionName);
         System.out.println("Major: " + major.getMajorName());
         System.out.println("Time: " + sectionTime);
+    }
+
+    public void displayInfo(boolean showStudents) {
+        displayInfo();
+        if (showStudents) {
+            System.out.println("Students: [Student list would be displayed here]");
+        }
+    }
+
+    public void displayInfo(boolean showStudents, boolean showTeacher) {
+        displayInfo(showStudents);
+        if (showTeacher) {
+            System.out.println("Teacher: [Teacher information would be displayed here]");
+        }
     }
 
     @Override

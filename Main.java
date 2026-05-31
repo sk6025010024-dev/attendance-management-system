@@ -53,6 +53,12 @@ public class Main {
         attendanceService.markAttendance(record1);
         attendanceService.markAttendance(record2);
 
+        // Test overloaded markAttendance
+        System.out.println("\n===== Testing Overloaded markAttendance =====");
+        attendanceService.markAttendance(student1, course, LocalDate.of(2026, 5, 19), AttendanceStatus.PRESENT);
+        attendanceService.markAttendance("ST002", "C001", LocalDate.of(2026, 5, 19), AttendanceStatus.PRESENT);
+        System.out.println();
+
         // --- Display Info via Displayable interface ---
         System.out.println("===== Department Info =====");
         department.displayInfo();
@@ -61,10 +67,10 @@ public class Main {
         major.displayInfo();
 
         System.out.println("\n===== Course Info =====");
-        course.displayInfo();
+        course.displayInfo(true);
 
         System.out.println("\n===== Section Info =====");
-        section.displayInfo();
+        section.displayInfo(true, true);
 
         System.out.println("\n===== Student Info =====");
         student1.displayInfo();
@@ -94,10 +100,16 @@ public class Main {
         }
 
         // --- Report ---
-        ReportService reportService = new ReportService();
-        ArrayList<AttendanceRecord> student1Records = attendanceService.getRecordsByStudent(student1);
+        ReportService reportService = new ReportService(attendanceService);
+        ArrayList<AttendanceRecord> student1Records = attendanceService.getRecords(student1);
 
-        System.out.println("===== Student Report =====");
+        System.out.println("===== Student Report (Explicit Records) =====");
         reportService.printStudentReport(student1, student1Records);
+
+        System.out.println("\n===== Student Report (Overloaded, by Student) =====");
+        reportService.printStudentReport(student1);
+
+        System.out.println("\n===== Student Report (Overloaded, by Student and Course) =====");
+        reportService.printStudentReport(student1, course);
     }
 }

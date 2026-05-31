@@ -14,18 +14,10 @@ public class Admin extends User {
         return adminId;
     }
 
-    // Low risk — admin may correct their own ID
-    public void setAdminId(String adminId) {
-        if (adminId != null && !adminId.isEmpty()) {
-            this.adminId = adminId;
-        }
-    }
-
     @Override
     public void displayInfo() {
+        super.displayInfo();
         System.out.println("Admin ID: " + adminId);
-        System.out.println("Name: " + getName());
-        System.out.println("Email: " + getEmail());
     }
 
     @Override

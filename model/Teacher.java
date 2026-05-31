@@ -19,22 +19,8 @@ public class Teacher extends User {
         return teacherId;
     }
 
-    // Low risk — admin may correct a typo in teacher ID
-    public void setTeacherId(String teacherId) {
-        if (teacherId != null && !teacherId.isEmpty()) {
-            this.teacherId = teacherId;
-        }
-    }
-
     public Department getDepartment() {
         return department;
-    }
-
-    // Low risk — teacher may transfer to another department
-    public void setDepartment(Department department) {
-        if (department != null) {
-            this.department = department;
-        }
     }
 
     public ArrayList<Course> getCourses() {
@@ -49,9 +35,8 @@ public class Teacher extends User {
 
     @Override
     public void displayInfo() {
+        super.displayInfo();
         System.out.println("Teacher ID: " + teacherId);
-        System.out.println("Name: " + getName());
-        System.out.println("Email: " + getEmail());
         System.out.println("Department: " + department.getDepartmentName());
         System.out.println("Courses:");
         for (Course course : courses) {

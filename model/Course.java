@@ -38,6 +38,20 @@ public class Course implements Displayable {
         System.out.println("Major: " + major.getMajorName());
     }
 
+    public void displayInfo(boolean showStudents) {
+        displayInfo();
+        if (showStudents) {
+            System.out.println("Students: [Student list would be displayed here]");
+        }
+    }
+
+    public void displayInfo(boolean showStudents, boolean showTeacher) {
+        displayInfo(showStudents);
+        if (showTeacher) {
+            System.out.println("Teacher: [Teacher information would be displayed here]");
+        }
+    }
+
     @Override
     public String toString() {
         return courseName;
